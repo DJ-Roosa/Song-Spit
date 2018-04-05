@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  </head>
+
+  <body>
+    <div id=searchContainer class=col-lg-12>
+
+        <form role="form">
+            <div class="form-group">
+              <label for="lyrics-input">Enter Lyrics</label>
+              <input class="form-control" id="lyrics-input" type="text">
+            </div>
+            <button class="btn btn-default" id="search-button" type="submit">Submit</button>
+        </form>
+
+    </div>
+
+    <script>
+        var lyrics = "";
+        $("#search-button").on("click", function(event) {
+            event.preventDefault();
+            var lyrics = $("#lyrics-input").val().trim();
+            console.log(lyrics);
+            $.get("http://api.musixmatch.com/ws/1.1/", 
+            {
+            apikey: "0b1d4ec899378cab1297ccabe9bbd864",
+            q: lyrics,      
+            }, function (data) {
+            console.log(data);
+            });
+        });
+    </script>
+
+  </body>
+
+</html>
+
+
