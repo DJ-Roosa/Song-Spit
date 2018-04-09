@@ -1,3 +1,5 @@
+
+// get song information from Spotify using the search API
 function spotifySearch(title) {
 
     let accessToken = "BQCr-TxNwWDjpOZUnyZYs_NKlilH20ZFWCwIBmgBLdPkCb_bXAnePFv34Ujxluox9uSZWZVelz8Umsj3F5AoNp1ZC6kZbOzmOsncwuVrZpd6Xl0Ebh3xoq02FAWcllxl8pPBATzNdr_bWa5yRClUlknCvJs4KFk";
