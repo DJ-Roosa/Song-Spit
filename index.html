@@ -26,7 +26,7 @@
 
            <!-- <nav>-->
                    <div class="logo-wrapper">
-                      <img src="assets/images/logo.png" id="brand-logo">
+                      <img src="assets/logo.png" id="brand-logo">
                       <!-- <i class="">Music-Spit</i>Logo</a> -->
                       <!--<ul class="right hide-on-med-and-down">
                       </ul>-->
@@ -87,13 +87,7 @@
                         $("#song-return").append(songReturn);
                         songReturn.addClass('titleBox');
 
-                         // Create with DOM
-                        //console.log()
-                        //artistname.innerHTML = artist.message.body.track_list[i].track.artist_name;
-                        // var songtitle = document.getElementById("s_title"); 
-                        // songtitle.innerHTML = artist.message.body.track_list[{i}].track.track_name;
-                        // var releaseddate = document.getElementById("r_date"); 
-                        // releaseddate.innerHTML = artist.message.body.track_list[i].track.first_release_date;
+                     
                    }
                  }
             })
@@ -101,27 +95,6 @@
 
         
     </script>
-    <!-- <script>
  
-        var lyrics = "";
-        $("#search-button").on("click", function(event) {
-            event.preventDefault();
-            var lyrics = $("#lyrics-input").val().trim();
-            console.log(lyrics);
-            $.get("http://api.musixmatch.com/ws/1.1/", 
-            {
-            apikey: "0b1d4ec899378cab1297ccabe9bbd864",
-            q_lyrics: lyrics,
-            crossDomain:true,
-            header:{
-                
-                'Content-Type':'application/json',
-                'Accept' : 'application/json'
-            }     
-            }, function (data) {
-            console.log(data);
-            });
-        });
-    </script> -->
   </body>
 </html>
