@@ -2,7 +2,7 @@
 // get song information from Spotify using the search API
 function spotifySearch(title) {
 
-    let accessToken = "BQCr-TxNwWDjpOZUnyZYs_NKlilH20ZFWCwIBmgBLdPkCb_bXAnePFv34Ujxluox9uSZWZVelz8Umsj3F5AoNp1ZC6kZbOzmOsncwuVrZpd6Xl0Ebh3xoq02FAWcllxl8pPBATzNdr_bWa5yRClUlknCvJs4KFk";
+    let accessToken = "BQDSvxiciMkRT_R2IwSO2QRlFcC-q_XBa8tCPsnUdLA1HFI5-nKrWJBwontyD7zYIduTHAQZWpiLx75d0bf5CqTwkpZd4bnQpA7i8Wed0QUjLON7k7WQaGfbU2sA-2SB9JM0BC7mFmUX9R15CHWt6gVmWEqgQcg";
 
     // let queryURL = "https://api.spotify.com/v1/search?q=" + '"' + searchTerm  + '"' + "&type=track&limit=5&offset=0";
     let queryURL = "https://api.spotify.com/v1/search?q=" + title + "&type=track&limit=5&offset=0";
