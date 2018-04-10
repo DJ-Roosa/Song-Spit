@@ -1,28 +1,108 @@
-
 <!DOCTYPE html>
 <html>
   <head>
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-  crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery.js"></script>
+ <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous">-->
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+  <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   </head>
-
+  <style>
+    body{
+        padding: 20px 10px;
+    }
+    p{
+        display: block;
+    }
+    </style>
   <body>
-    <div id=searchContainer class=col-lg-12>
 
-        <form role="form">
+           <!-- <nav>-->
+                   <div class="logo-wrapper">
+                      <img src="assets/images/logo.png" id="brand-logo">
+                      <!-- <i class="">Music-Spit</i>Logo</a> -->
+                      <!--<ul class="right hide-on-med-and-down">
+                      </ul>-->
+                    </div>
+
+                  <!--</nav>-->
+
+
+        <form  id="searchContainer" role="form">
             <div class="form-group">
               <label for="lyrics-input">Enter Lyrics</label>
-              <input class="form-control" id="lyrics-input" type="text">
+              <input class="form-control" name="lyrics" id="lyrics-input" type="text">
             </div>
-            <button class="btn btn-default" id="search-button" type="submit">Submit</button>
+            <button class="btn btn-default" id="search-button" type="submit">Submit</button><br/>
         </form>
-
+        <div id="song-return"></div>
     </div>
 
+   
+                
     <script>
+        $("#search-button").click(function(){
+            event.preventDefault();
+            $("#song-return").empty();
+            var lyrics = $("#lyrics-input").val().trim();
+            
+            $.ajax({
+                method:"GET",
+                data:{
+                  apikey:"ab6018d2a0d1bbeef89eaa602857cdd8" ,
+                  q_lyrics: lyrics,
+                  page_size: 10,
+                  format:"jsonp",
+                  callback:"jsonp_callback"
+                },
+                url:"https://api.musixmatch.com/ws/1.1/track.search",
+                async:false,
+                dataType:"jsonp",
+                jsonpCallback:"jsonp_callback",
+                contentType:'application/json',
+                success:function(artist){
+                    console.log(artist.message.body);
+   
+                    // console.log(artist.message.body.track_list[0].track.artist_name)
+                    var trackList = artist.message.body.track_list;
+
+                   for (i = 0; i < trackList.length; i++) { 
+                    console.log(trackList[i].track.first_release_date);
+                        //var artistname = $("artist"); 
+                        var songReturn=  $('<div>' 
+                        + "<strong>Title: </strong>" + trackList[i].track.track_name + '<br>' 
+                        + "<strong>Artist: </strong>" + trackList[i].track.artist_name + '<br>' 
+                        + "<strong>Album: </strong>" + trackList[i].track.album_name + '<br>' 
+                        + "<strong>Year: </strong>" + trackList[i].track.first_release_date 
+                        + "<a class='right' href=" + trackList[i].track.track_share_url  + ">Lyrics</a>"
+                        + '</div>');
+
+                        $("#song-return").append(songReturn);
+                        songReturn.addClass('titleBox');
+
+                         // Create with DOM
+                        //console.log()
+                        //artistname.innerHTML = artist.message.body.track_list[i].track.artist_name;
+                        // var songtitle = document.getElementById("s_title"); 
+                        // songtitle.innerHTML = artist.message.body.track_list[{i}].track.track_name;
+                        // var releaseddate = document.getElementById("r_date"); 
+                        // releaseddate.innerHTML = artist.message.body.track_list[i].track.first_release_date;
+                   }
+                 }
+            })
+        })
+
+        
+    </script>
+    <!-- <script>
+ 
         var lyrics = "";
         $("#search-button").on("click", function(event) {
             event.preventDefault();
@@ -31,15 +111,17 @@
             $.get("http://api.musixmatch.com/ws/1.1/", 
             {
             apikey: "0b1d4ec899378cab1297ccabe9bbd864",
-            q: lyrics,      
+            q_lyrics: lyrics,
+            crossDomain:true,
+            header:{
+                
+                'Content-Type':'application/json',
+                'Accept' : 'application/json'
+            }     
             }, function (data) {
             console.log(data);
             });
         });
-    </script>
-
+    </script> -->
   </body>
-
 </html>
-
-
