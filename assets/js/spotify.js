@@ -5,7 +5,7 @@
 console.log("spotify.js");
 function spotifySearch(songTitle, artist, album) {
 
-    let queryURL = "https://api.spotify.com/v1/search?q=" + title + "&type=track&limit=30&offset=0";
+    let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle + "&type=track&limit=30&offset=0";
 
     // get the parameters values. Spotify uses anchor tag # in the response from the authorize redirect.
     let params = document.location.hash;
