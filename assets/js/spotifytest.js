@@ -24,13 +24,13 @@ $("#searchSongBtn").on("click", function (event) {
     let searchArtist = $("#searchArtist").val().trim();
     let searchAlbum = $("#searchAlbum").val().trim();
     const callbackAcceptingFunction = (fn) => {
-        spotifySearch(searchSong, searchArtist, searchAlbum);
-        return fn(link);
+        let spotifyLink = spotifySearch(searchSong, searchArtist, searchAlbum);
+        return fn(spotifyLink);
     };
 
     // Callback gets arguments from the above call
-    const callback = (link) => {
-        return link
+    const callback = (spotifyLink) => {
+        return spotifyLink
     }
 
     // Passing a callback into a callback accepting function
