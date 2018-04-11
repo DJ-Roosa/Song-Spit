@@ -89,6 +89,6 @@ $("#searchSongBtn").on("click", function (event) {
                     };
                 };
             console.log("Link Returned: " + linkReturn);
-            $("#link").val = "<a href src=" + linkReturn + "/>";
+            $("#link").text = "<a href src=" + linkReturn + "/>";
         });
 });
