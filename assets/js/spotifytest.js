@@ -5,16 +5,16 @@ $("#searchSongBtn").on("click", function (event) {
     let searchAlbum = $("#searchAlbum").val().trim();
     let songLink = spotifySearch(searchSong, searchArtist, searchAlbum);
 
-
+    console.log(songLink.link);
     //returnValues = { link: linkReturn }
-    if (songLink === "#") {
+    if (songLink.link === "#") {
         console.log("No Match Found");
         $("#link").val = "No Match Found";
     } else {
         let {
             link
-        } = songLink;
+        } = songLink.link;
         $("#link").val = "<a href src=" + link + "/>";
-        console.log("Link: " + link);
+        console.log("Link is: " + link);
     };
 });
