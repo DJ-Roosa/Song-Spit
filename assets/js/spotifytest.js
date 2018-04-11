@@ -6,6 +6,11 @@ $("#searchSongBtn").on("click", function (event) {
 console.log("songInfo");
 console.log(songInfo);
 
+
+//https://accounts.spotify.com/authorize?client_id=e3f88cfb7e5c4c218a192eccbbad9249&response_type=token&redirect_uri=https://dj-roosa.github.io/Song-Spit/spotifytest.html&scope=user-read-private
+
+
+
     // let accessToken = "BQCwQGrrCAjkWnMAcgE984izB9qhSGTBxuTVjcqecj7ewcytvPEcZh_rZZeuhqSr5s4SItoKP7vT73zky74_EJlq4nUJs4VuxX3_dSJrbLdoVXgWu59rzo9IYDST_xfJjFsF7Ck6436hrZCm1LTbrB7YLDq5c5s";
 
     // // let queryURL = "https://api.spotify.com/v1/search?q=" + '"' + searchTerm  + '"' + "&type=track&limit=5&offset=0";
