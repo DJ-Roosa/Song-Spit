@@ -14,8 +14,8 @@ function spotifySearch(title) {
 
     let queryURL = "https://api.spotify.com/v1/search?q=" + title + "&type=track&limit=5&offset=0";
 
-    var urlParams = new URLSearchParams(window.location.search);
-    accessToken = urlParams.get('access-token');
+    let urlParams = new URLSearchParams(window.location.search);
+    accessToken = urlParams.get('access_token');
 
     console.log("success button");
     console.log(queryURL);
