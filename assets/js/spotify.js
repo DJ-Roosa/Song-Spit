@@ -1,24 +1,25 @@
-// function load()
-// {
-//     window.location.href = "https://accounts.spotify.com/authorize?client_id=e3f88cfb7e5c4c218a192eccbbad9249&response_type=token&redirect_uri=https://dj-roosa.github.io/Song-Spit/spotifytest.html&scope=user-read-private";
-// }
-// get song information from Spotify using the search API
-function spotifySearch(title) {
+// caller
+// var variableName = spotifySearch(songTitle, songArtist, songAlbum)
+// caller process return data
+//  let  { link } = variableName
+console.log("spotify.js");
 
-    // let accessToken = "BQCO0pMVbqFOIb4HhbsKagMMKL96Hg0MWIM--HdVsNhMGPU_doVx5swfFkMDrPutRBdHVwH-iFqDBjsAS_whtj2pne61RbuZoWW8K8GB8n78zR-TZUH6UTjCHGswYkeQaGV-c79CAfIyjx79kqPaG5tkt_8cS3M";
+function spotifySearch(songTitle, artist, album) {
 
-    // let queryURL = "https://api.spotify.com/v1/search?q=" + '"' + searchTerm  + '"' + "&type=track&limit=5&offset=0";
+    let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle + "&type=track&limit=30&offset=0";
 
+    // get the parameters values. Spotify uses anchor tag # in the response from the authorize redirect.
+    let params = document.location.hash;
+    // drop the leading #
+    params = params.substring(1);
+    // new object with for the parameter string. Methods available for the object
+    let urlParams = new URLSearchParams(params);
+    // use the get methods to find the value of the access_token parameter. This is needed for the search API call
+    let accessToken = urlParams.get('access_token');
 
-    // window.location.href = "https://accounts.spotify.com/authorize?client_id=e3f88cfb7e5c4c218a192eccbbad9249&response_type=token&redirect_uri=https://dj-roosa.github.io/Song-Spit/spotifytest.html&scope=user-read-private";
-
-    let queryURL = "https://api.spotify.com/v1/search?q=" + title + "&type=track&limit=5&offset=0";
-
-
+    console.log(accessToken);
     console.log("success button");
     console.log(queryURL);
-
-    let songData = "";
 
     $.ajax({
             url: queryURL,
@@ -28,31 +29,47 @@ function spotifySearch(title) {
             },
         })
         .then(function (response) {
-            console.log(response)
-            console.log("success API")
-            
-          
+            console.log(response);
+            console.log("success API");
 
-            console.log(response.tracks.items[0]);
-            for (let i = 0; i < response.tracks.items.length; i++) {
-                console.log(response.tracks.items[i].name);
-                console.log(response.tracks.items[i].track_number);
-                console.log(response.tracks.items[i].preview_url);
-                console.log(response.tracks.items[i].album.artists[0].name);
-                console.log(response.tracks.items[i].album.name);
-                console.log(response.tracks.items[i].album.external_urls.spotify);
-                for (let j = 0; j < response.tracks.items[i].album.images.length; j++) {
-                    console.log(response.tracks.items[1].album.images[j].url);
-                    console.log(response.tracks.items[1].album.images[j].height);
-                    console.log(response.tracks.items[1].album.images[j].width);
+
+            // find match song title
+            let linkReturn = "";
+            mainLoop:
+                for (let i = 0; i < response.tracks.items.length; i++) {
+                    // chech for match on song title and album name
+                    console.log("name: " + response.tracks.items[i].name);
+                    console.log("album: " + response.tracks.items[i].album.name);
+                    if (response.tracks.items[i].name === songTitle && response.tracks.items[i].album.name === album) {
+                        //when match song and album, look for match on artist
+                        for (let j = 0; j < response.tracks.items[i].album.artists.length; j++) {
+                            // when artist matches, return spotify link
+                            console.log("artist: " + response.tracks.items[i].album.artists[j].name);
+                            if (response.tracks.items[i].album.artists[j].name = artist) {
+                                console.log("link found: " + response.tracks.items[i].album.external_urls.spotify);
+                                linkReturn = response.tracks.items[i].album.external_urls.spotify;
+                                break mainLoop;
+                            };
+                        };
+                    };
                 };
-                console.log("-------------------------------------------")
+
+            if (linkReturn === "") {
+                linkReturn = "#";
             };
 
-            songData = response;
-            console.log("songData:");
-            console.log(songData);
-            return songData;
+            console.log("Link Returned: " + linkReturn);
+            let returnValues = {
+                "link": linkReturn
+            };
+            return returnValues;
+
         });
 
+
+
+    // format return data
+    // let aa = "https://aaaaa.com";
+    // let bb = "bbbbbbbb";
+    // let obj = { link: aa, other : bb} ; // {link: "aaaaa", other: "bbbbbb"}
 };

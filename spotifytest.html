@@ -13,40 +13,38 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row formDisplay noForm">
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
                 <form>
                     <div class="form-group">
-                        <label for="searchSong" class="col-form-label">Song Name:</label>
-                        <input type="text" id="searchSong" class="form-control">
+                        <label for="searchSong" class="col-form-label">Song:</label>
+                        <input type="text" id="searchSong" class="form-control" value="Dude Is Back">
+                    </div>
+                    <div class="form-group">
+                        <label for="searchArtist" class="col-form-label">Artist:</label>
+                        <input type="text" id="searchArtist" class="form-control" value="Shaan Rahman">
+                    </div>
+                    <div class="form-group">
+                        <label for="searchAlbum" class="col-form-label">Album:</label>
+                        <input type="text" id="searchAlbum" class="form-control" value="Aadu 2 (Original Motion Picture Soundtrack)">
                     </div>
                     <button type="button" id="searchSongBtn" class="btn btn-primary">Search</button>
                 </form>
             </div>
             <div class="col-lg-1"></div>
         </div>
-        <p>Title:
-            <span id="title"></span>
-        </p>
-        <p>Artist:
-            <span id="artist"></span>
-        </p>
-        <p>Album:
-            <span id="album"></span>
-        </p>
-        <p>Release:
-            <span id="release"></span>
+        <p>Link:
+            <span id="link"><a href="#">No link Yet</a></span>
         </p>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="assets/js/spotifyInitialize.js"></script>
-        <script src="assets/js/spotifytest.js"></script>
         <script src="assets/js/spotify.js"></script>
+        <script src="assets/js/spotifytest.js"></script>
+       
 </body>
 
 </html>
