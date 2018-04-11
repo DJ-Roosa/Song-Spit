@@ -1,6 +1,22 @@
 $("#searchSongBtn").on("click", function (event) {
     event.preventDefault();
 
+
+    //    var a;
+    //    searchsong( a,b,c, function(result){
+    //        a = result;
+    //        console.log(a);
+
+    //    });
+    //    function saerchsong(a,b,c, callback){
+    //        ...
+    //        $.ajax(...).then(function(response){
+    //            var link = {key: response};
+    //            callback(link);
+    //        })
+    //    }
+    // console.log(a);
+
     let songTitle = $("#searchSong").val().trim();
     let artist = $("#searchArtist").val().trim();
     let album = $("#searchAlbum").val().trim();
@@ -48,6 +64,7 @@ $("#searchSongBtn").on("click", function (event) {
                         };
                     };
                 };
+            $("#link").empty;
             $("#link").replace("<a href=" + linkReturn + " target='_blank'>" + linkReturn + "</a>")
         });
 });
