@@ -1,7 +1,7 @@
 // caller
 // var variableName = spotifySearch(songTitle, songArtist, songAlbum)
 // caller process return data
-//  let  { songLink : link } = variableName
+//  let  { link } = variableName
 console.log("spotify.js");
 
 function spotifySearch(songTitle, artist, album) {
@@ -21,8 +21,6 @@ function spotifySearch(songTitle, artist, album) {
     console.log("success button");
     console.log(queryURL);
 
-    let linkReturn = "";
-
     $.ajax({
             url: queryURL,
             method: "GET",
@@ -36,26 +34,30 @@ function spotifySearch(songTitle, artist, album) {
 
 
             // find match song title
-            for (let i = 0; i < response.tracks.items.length; i++) {
-                // chech for match on song title and album name
-                console.log("name: " + response.tracks.items[i].name);
-                console.log("album: " + response.tracks.items[i].album.name);
-                if (response.tracks.items[i].name === songTitle && response.tracks.items[i].album.name === album) {
-                    //when match song and album, look for match on artist
-                    for (let j = 0; j < response.tracks.items[i].album.artists.length; j++) {
-                        // when artist matches, return spotify link
-                        console.log("artist: " + response.tracks.items[i].album.artists[j].name);
-                        if (response.tracks.items[i].album.artists[j].name = artist) {
-                            console.log("link found: " + response.tracks.items[i].album.external_urls.spotify);
-                            linkReturn = response.tracks.items[i].album.external_urls.spotify;
+            let linkReturn = "";
+            while (linkReturn === "") {
+                for (let i = 0; i < response.tracks.items.length; i++) {
+                    // chech for match on song title and album name
+                    console.log("name: " + response.tracks.items[i].name);
+                    console.log("album: " + response.tracks.items[i].album.name);
+                    if (response.tracks.items[i].name === songTitle && response.tracks.items[i].album.name === album) {
+                        //when match song and album, look for match on artist
+                        for (let j = 0; j < response.tracks.items[i].album.artists.length; j++) {
+                            // when artist matches, return spotify link
+                            console.log("artist: " + response.tracks.items[i].album.artists[j].name);
+                            if (response.tracks.items[i].album.artists[j].name = artist) {
+                                console.log("link found: " + response.tracks.items[i].album.external_urls.spotify);
+                                linkReturn = response.tracks.items[i].album.external_urls.spotify;
+                            };
                         };
                     };
                 };
+                linkReturn = "#";
             };
 
             console.log("Link Returned: " + linkReturn);
             let returnValues = {
-                songLink: linkReturn
+                link : linkReturn
             };
             return returnValues;
 
