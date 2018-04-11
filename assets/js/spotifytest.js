@@ -81,7 +81,7 @@ $("#searchSongBtn").on("click", function (event) {
                             // when artist matches, return spotify link
                             console.log("artist: " + response.tracks.items[i].album.artists[j].name);
                             if (response.tracks.items[i].album.artists[j].name = artist) {
-                                console.log("link found: " + response.tracks.items[i].album.external_urls.spotify);
+                                console.log("link found: " + response.tracks.items[i].external_urls.spotify);
                                 linkReturn = response.tracks.items[i].album.external_urls.spotify;
                                 break mainLoop;
                             };
