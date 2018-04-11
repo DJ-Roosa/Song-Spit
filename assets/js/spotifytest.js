@@ -7,9 +7,14 @@ $("#searchSongBtn").on("click", function (event) {
 
 
     //returnValues = { link: linkReturn }
-    let {
-        link
-    } = songLink;
-    $("#link").val = "<a href src=" + link + "/>";
-    console.log("Link: " + link);
+    if (songLink === "#") {
+        console.log("No Match Found");
+        $("#link").val = "No Match Found";
+    } else {
+        let {
+            link
+        } = songLink;
+        $("#link").val = "<a href src=" + link + "/>";
+        console.log("Link: " + link);
+    };
 });
