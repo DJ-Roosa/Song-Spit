@@ -63,111 +63,112 @@
         var database = firebase.database();
 
         $("#search-button").click(function () {
-                    event.preventDefault();
-                    $("#song-return").empty();
-                    var lyrics = $("#lyrics-input").val().trim();
+            event.preventDefault();
+            $("#song-return").empty();
+            var lyrics = $("#lyrics-input").val().trim();
 
-                    $.ajax({
-                        method: "GET",
-                        data: {
-                            apikey: "ab6018d2a0d1bbeef89eaa602857cdd8",
-                            q_lyrics: lyrics,
-                            page_size: 10,
-                            format: "jsonp",
-                            callback: "jsonp_callback"
-                        },
-                        url: "https://api.musixmatch.com/ws/1.1/track.search",
-                        async: false,
-                        dataType: "jsonp",
-                        jsonpCallback: "jsonp_callback",
-                        contentType: 'application/json',
-                        success: function (artist) {
-                            console.log(artist.message.body);
+            $.ajax({
+                    method: "GET",
+                    data: {
+                        apikey: "ab6018d2a0d1bbeef89eaa602857cdd8",
+                        q_lyrics: lyrics,
+                        page_size: 10,
+                        format: "jsonp",
+                        callback: "jsonp_callback"
+                    },
+                    url: "https://api.musixmatch.com/ws/1.1/track.search",
+                    async: false,
+                    dataType: "jsonp",
+                    jsonpCallback: "jsonp_callback",
+                    contentType: 'application/json',
+                    success: function (artist) {
+                        console.log(artist.message.body);
 
-                            // console.log(artist.message.body.track_list[0].track.artist_name)
-                            var trackList = artist.message.body.track_list;
+                        // console.log(artist.message.body.track_list[0].track.artist_name)
+                        var trackList = artist.message.body.track_list;
 
-                            for (i = 0; i < trackList.length; i++) {
-                                console.log(trackList[i].track.first_release_date);
-                                //var artistname = $("artist"); 
-
-
-                                //*************************************************************************************
-                                let songTitle = trackList[i].track.track_name;
-                                let artist = trackList[i].track.artist_name;
-                                let album = trackList[i].track.album_name;
-
-                                let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle +
-                                    "&type=track&limit=30&offset=0";
-
-                                // get the parameters values. Spotify uses anchor tag # in the response from the authorize redirect.
-                                let params = document.location.hash;
-                                // drop the leading #
-                                params = params.substring(1);
-                                // new object with for the parameter string. Methods available for the object
-                                let urlParams = new URLSearchParams(params);
-                                // use the get methods to find the value of the access_token parameter. This is needed for the search API call
-                                let accessToken = urlParams.get('access_token');
-
-                                $.ajax({
-                                        url: queryURL,
-                                        method: "GET",
-                                        headers: {
-                                            'Authorization': 'Bearer ' + accessToken
-                                        },
-                                    })
-                                    .then(function (response) {
-                                            console.log(response);
-                                            console.log("success API");
+                        for (i = 0; i < trackList.length; i++) {
+                            console.log(trackList[i].track.first_release_date);
+                            //var artistname = $("artist"); 
 
 
-                                            // find match song title
+                            //*************************************************************************************
+                            let songTitle = trackList[i].track.track_name;
+                            let artist = trackList[i].track.artist_name;
+                            let album = trackList[i].track.album_name;
 
-                                            mainLoop:
-                                                for (let i = 0; i < response.tracks.items.length; i++) {
-                                                    // chech for match on song title and album name
-                                                    console.log("name: " + response.tracks.items[i].name);
-                                                    console.log("album: " + response.tracks.items[i].album.name);
-                                                    if (response.tracks.items[i].name === songTitle &&
-                                                        response.tracks.items[i].album.name === album) {
-                                                        //when match song and album, look for match on artist
-                                                        for (let j = 0; j < response.tracks.items[i].album.artists
-                                                            .length; j++) {
-                                                            // when artist matches, return spotify link
-                                                            console.log("artist: " + response.tracks.items[
-                                                                i].album.artists[j].name);
-                                                            if (response.tracks.items[i].album.artists[j].name =
-                                                                artist) {
-                                                                console.log("link found: " + response.tracks
-                                                                    .items[i].external_urls.spotify);
-                                                                linkReturn = response.tracks.items[i].external_urls
-                                                                    .spotify;
-                                                                break mainLoop;
-                                                            };
-                                                        };
+                            let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle +
+                                "&type=track&limit=30&offset=0";
+
+                            // get the parameters values. Spotify uses anchor tag # in the response from the authorize redirect.
+                            let params = document.location.hash;
+                            // drop the leading #
+                            params = params.substring(1);
+                            // new object with for the parameter string. Methods available for the object
+                            let urlParams = new URLSearchParams(params);
+                            // use the get methods to find the value of the access_token parameter. This is needed for the search API call
+                            let accessToken = urlParams.get('access_token');
+
+                            $.ajax({
+                                    url: queryURL,
+                                    method: "GET",
+                                    headers: {
+                                        'Authorization': 'Bearer ' + accessToken
+                                    },
+                                })
+                                .then(function (response) {
+                                    console.log(response);
+                                    console.log("success API");
+
+
+                                    // find match song title
+
+                                    mainLoop:
+                                        for (let i = 0; i < response.tracks.items.length; i++) {
+                                            // chech for match on song title and album name
+                                            console.log("name: " + response.tracks.items[i].name);
+                                            console.log("album: " + response.tracks.items[i].album.name);
+                                            if (response.tracks.items[i].name === songTitle &&
+                                                response.tracks.items[i].album.name === album) {
+                                                //when match song and album, look for match on artist
+                                                for (let j = 0; j < response.tracks.items[i].album.artists
+                                                    .length; j++) {
+                                                    // when artist matches, return spotify link
+                                                    console.log("artist: " + response.tracks.items[
+                                                        i].album.artists[j].name);
+                                                    if (response.tracks.items[i].album.artists[j].name =
+                                                        artist) {
+                                                        console.log("link found: " + response.tracks
+                                                            .items[i].external_urls.spotify);
+                                                        linkReturn = response.tracks.items[i].external_urls
+                                                            .spotify;
+                                                        break mainLoop;
                                                     };
                                                 };
+                                            };
+                                        };
 
-                                            //*************************************************************************************
-                                            var songReturn = $('<div>' +
-                                                "<strong>Title: </strong>" + trackList[i].track.track_name +
-                                                '<br>' +
-                                                "<strong>Artist: </strong>" + trackList[i].track.artist_name +
-                                                '<br>' +
-                                                "<strong>Album: </strong>" + trackList[i].track.album_name +
-                                                '<br>' +
-                                                "<strong>Year: </strong>" + trackList[i].track.first_release_date +
-                                                "<a class='right' href=" + trackList[i].track.track_share_url +
-                                                ">Lyrics</a>" +
-                                                "<a class='right' href=" + linkReturn +
-                                                ">Spotify</a>" +
-                                                '</div>');
-                                            $("#song-return").append(songReturn);
-                                            songReturn.addClass('titleBox');
-                                        }
-                                    }
-                            })
-                    })
+                                    //*************************************************************************************
+                                    var songReturn = $('<div>' +
+                                        "<strong>Title: </strong>" + trackList[i].track.track_name +
+                                        '<br>' +
+                                        "<strong>Artist: </strong>" + trackList[i].track.artist_name +
+                                        '<br>' +
+                                        "<strong>Album: </strong>" + trackList[i].track.album_name +
+                                        '<br>' +
+                                        "<strong>Year: </strong>" + trackList[i].track.first_release_date +
+                                        "<a class='right' href=" + trackList[i].track.track_share_url +
+                                        ">Lyrics</a>" +
+                                        "<a class='right' href=" + linkReturn +
+                                        ">Spotify</a>" +
+                                        '</div>');
+                                    $("#song-return").append(songReturn);
+                                    songReturn.addClass('titleBox');
+                                });                        
+                        };
+                }
+            });
+        });
     </script>
 </body>
 
