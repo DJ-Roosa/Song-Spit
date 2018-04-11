@@ -1,10 +1,17 @@
-
+// function load()
+// {
+//     window.location.href = "https://accounts.spotify.com/authorize?client_id=e3f88cfb7e5c4c218a192eccbbad9249&response_type=token&redirect_uri=https://dj-roosa.github.io/Song-Spit/spotifytest.html&scope=user-read-private";
+// }
 // get song information from Spotify using the search API
 function spotifySearch(title) {
 
-    let accessToken = "BQDSvxiciMkRT_R2IwSO2QRlFcC-q_XBa8tCPsnUdLA1HFI5-nKrWJBwontyD7zYIduTHAQZWpiLx75d0bf5CqTwkpZd4bnQpA7i8Wed0QUjLON7k7WQaGfbU2sA-2SB9JM0BC7mFmUX9R15CHWt6gVmWEqgQcg";
+    // let accessToken = "BQCO0pMVbqFOIb4HhbsKagMMKL96Hg0MWIM--HdVsNhMGPU_doVx5swfFkMDrPutRBdHVwH-iFqDBjsAS_whtj2pne61RbuZoWW8K8GB8n78zR-TZUH6UTjCHGswYkeQaGV-c79CAfIyjx79kqPaG5tkt_8cS3M";
 
     // let queryURL = "https://api.spotify.com/v1/search?q=" + '"' + searchTerm  + '"' + "&type=track&limit=5&offset=0";
+
+
+    // window.location.href = "https://accounts.spotify.com/authorize?client_id=e3f88cfb7e5c4c218a192eccbbad9249&response_type=token&redirect_uri=https://dj-roosa.github.io/Song-Spit/spotifytest.html&scope=user-read-private";
+
     let queryURL = "https://api.spotify.com/v1/search?q=" + title + "&type=track&limit=5&offset=0";
 
 
