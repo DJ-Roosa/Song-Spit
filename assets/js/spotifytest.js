@@ -2,7 +2,7 @@ $("#searchSongBtn").on("click", function (event) {
     event.preventDefault();
     let searchSong = $("#searchSong").val().trim();
     let searchArtist = $("#searchArtist").val().trim();
-    let searchAlbum = $("#ssearchAlbum").val().trim();
+    let searchAlbum = $("#searchAlbum").val().trim();
     let songLink = spotifySearch(searchTerm);
 
 $("link").val = "<a href src=" + songLink + "/>";
