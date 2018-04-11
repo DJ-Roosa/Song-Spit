@@ -10,7 +10,7 @@
 
    <!-- Compiled and minified JavaScript -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-
+   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
   <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   </head>
@@ -48,6 +48,17 @@
    
                 
     <script>
+      
+     
+     var config = {
+     apiKey: "AIzaSyA_QypGPkcjPtylRDscf7-HQl8ribnFeIs",
+     authDomain: "time-sheet-55009.firebaseapp.com",
+     databaseURL: "https://time-sheet-55009.firebaseio.com",
+     storageBucket: "time-sheet-55009.appspot.com"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+      
         $("#search-button").click(function(){
             event.preventDefault();
             $("#song-return").empty();
