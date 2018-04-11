@@ -1,106 +1,174 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
- <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-  crossorigin="anonymous">-->
-   <!-- Compiled and minified CSS -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-   <!-- Compiled and minified JavaScript -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-  <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  </head>
-  <style>
-    body{
+<head>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous">-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script type="text/javascript" src="http://tracking.musixmatch.com/t1.0/AMa6hJCIEzn1v8RuOP"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
         padding: 20px 10px;
     }
-    p{
+
+    p {
         display: block;
     }
-    </style>
-  <body>
+</style>
 
-           <!-- <nav>-->
-                   <div class="logo-wrapper">
-                      <img src="assets/images/logo.png" id="brand-logo">
-                      <!-- <i class="">Music-Spit</i>Logo</a> -->
-                      <!--<ul class="right hide-on-med-and-down">
+<body>
+
+    <!-- <nav>-->
+    <div class="logo-wrapper">
+        <img src="assets/images/logo.png" id="brand-logo">
+        <!-- <i class="">Music-Spit</i>Logo</a> -->
+        <!--<ul class="right hide-on-med-and-down">
                       </ul>-->
-                    </div>
-
-                  <!--</nav>-->
-
-
-        <form  id="searchContainer" role="form">
-            <div class="form-group">
-              <label for="lyrics-input">Enter Lyrics</label>
-              <input class="form-control" name="lyrics" id="lyrics-input" type="text">
-            </div>
-            <button class="btn btn-default" id="search-button" type="submit">Submit</button><br/>
-        </form>
-        <div id="song-return"></div>
     </div>
 
-   
-                
+    <!--</nav>-->
+
+
+    <form id="searchContainer" role="form">
+        <div class="form-group">
+            <label for="lyrics-input">Enter Lyrics</label>
+            <input class="form-control" name="lyrics" id="lyrics-input" type="text">
+        </div>
+        <button class="btn btn-default" id="search-button" type="submit">Submit</button>
+        <br/>
+    </form>
+    <div id="song-return"></div>
+    </div>
+
+
+
     <script>
-      
-     
-     var config = {
-     apiKey: "AIzaSyA_QypGPkcjPtylRDscf7-HQl8ribnFeIs",
-     authDomain: "time-sheet-55009.firebaseapp.com",
-     databaseURL: "https://time-sheet-55009.firebaseio.com",
-     storageBucket: "time-sheet-55009.appspot.com"
-    };
-    firebase.initializeApp(config);
-    var database = firebase.database();
-      
-        $("#search-button").click(function(){
-            event.preventDefault();
-            $("#song-return").empty();
-            var lyrics = $("#lyrics-input").val().trim();
-            
-            $.ajax({
-                method:"GET",
-                data:{
-                  apikey:"ab6018d2a0d1bbeef89eaa602857cdd8" ,
-                  q_lyrics: lyrics,
-                  page_size: 10,
-                  format:"jsonp",
-                  callback:"jsonp_callback"
-                },
-                url:"https://api.musixmatch.com/ws/1.1/track.search",
-                async:false,
-                dataType:"jsonp",
-                jsonpCallback:"jsonp_callback",
-                contentType:'application/json',
-                success:function(artist){
-                    console.log(artist.message.body);
-   
-                    // console.log(artist.message.body.track_list[0].track.artist_name)
-                    var trackList = artist.message.body.track_list;
+        var config = {
+            apiKey: "AIzaSyA_QypGPkcjPtylRDscf7-HQl8ribnFeIs",
+            authDomain: "time-sheet-55009.firebaseapp.com",
+            databaseURL: "https://time-sheet-55009.firebaseio.com",
+            storageBucket: "time-sheet-55009.appspot.com"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
 
-                   for (i = 0; i < trackList.length; i++) { 
-                    console.log(trackList[i].track.first_release_date);
-                        //var artistname = $("artist"); 
-                        var songReturn=  $('<div>' 
-                        + "<strong>Title: </strong>" + trackList[i].track.track_name + '<br>' 
-                        + "<strong>Artist: </strong>" + trackList[i].track.artist_name + '<br>' 
-                        + "<strong>Album: </strong>" + trackList[i].track.album_name + '<br>' 
-                        + "<strong>Year: </strong>" + trackList[i].track.first_release_date 
-                        + "<a class='right' href=" + trackList[i].track.track_share_url  + ">Lyrics</a>"
-                        + '</div>');
+        $("#search-button").click(function () {
+                    event.preventDefault();
+                    $("#song-return").empty();
+                    var lyrics = $("#lyrics-input").val().trim();
 
-                        $("#song-return").append(songReturn);
-                        songReturn.addClass('titleBox');
-                   }
-                 }
-            })
-        })       
+                    $.ajax({
+                        method: "GET",
+                        data: {
+                            apikey: "ab6018d2a0d1bbeef89eaa602857cdd8",
+                            q_lyrics: lyrics,
+                            page_size: 10,
+                            format: "jsonp",
+                            callback: "jsonp_callback"
+                        },
+                        url: "https://api.musixmatch.com/ws/1.1/track.search",
+                        async: false,
+                        dataType: "jsonp",
+                        jsonpCallback: "jsonp_callback",
+                        contentType: 'application/json',
+                        success: function (artist) {
+                            console.log(artist.message.body);
+
+                            // console.log(artist.message.body.track_list[0].track.artist_name)
+                            var trackList = artist.message.body.track_list;
+
+                            for (i = 0; i < trackList.length; i++) {
+                                console.log(trackList[i].track.first_release_date);
+                                //var artistname = $("artist"); 
+
+
+                                //*************************************************************************************
+                                let songTitle = trackList[i].track.track_name;
+                                let artist = trackList[i].track.artist_name;
+                                let album = trackList[i].track.album_name;
+
+                                let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle +
+                                    "&type=track&limit=30&offset=0";
+
+                                // get the parameters values. Spotify uses anchor tag # in the response from the authorize redirect.
+                                let params = document.location.hash;
+                                // drop the leading #
+                                params = params.substring(1);
+                                // new object with for the parameter string. Methods available for the object
+                                let urlParams = new URLSearchParams(params);
+                                // use the get methods to find the value of the access_token parameter. This is needed for the search API call
+                                let accessToken = urlParams.get('access_token');
+
+                                $.ajax({
+                                        url: queryURL,
+                                        method: "GET",
+                                        headers: {
+                                            'Authorization': 'Bearer ' + accessToken
+                                        },
+                                    })
+                                    .then(function (response) {
+                                            console.log(response);
+                                            console.log("success API");
+
+
+                                            // find match song title
+
+                                            mainLoop:
+                                                for (let i = 0; i < response.tracks.items.length; i++) {
+                                                    // chech for match on song title and album name
+                                                    console.log("name: " + response.tracks.items[i].name);
+                                                    console.log("album: " + response.tracks.items[i].album.name);
+                                                    if (response.tracks.items[i].name === songTitle &&
+                                                        response.tracks.items[i].album.name === album) {
+                                                        //when match song and album, look for match on artist
+                                                        for (let j = 0; j < response.tracks.items[i].album.artists
+                                                            .length; j++) {
+                                                            // when artist matches, return spotify link
+                                                            console.log("artist: " + response.tracks.items[
+                                                                i].album.artists[j].name);
+                                                            if (response.tracks.items[i].album.artists[j].name =
+                                                                artist) {
+                                                                console.log("link found: " + response.tracks
+                                                                    .items[i].external_urls.spotify);
+                                                                linkReturn = response.tracks.items[i].external_urls
+                                                                    .spotify;
+                                                                break mainLoop;
+                                                            };
+                                                        };
+                                                    };
+                                                };
+
+                                            //*************************************************************************************
+                                            var songReturn = $('<div>' +
+                                                "<strong>Title: </strong>" + trackList[i].track.track_name +
+                                                '<br>' +
+                                                "<strong>Artist: </strong>" + trackList[i].track.artist_name +
+                                                '<br>' +
+                                                "<strong>Album: </strong>" + trackList[i].track.album_name +
+                                                '<br>' +
+                                                "<strong>Year: </strong>" + trackList[i].track.first_release_date +
+                                                "<a class='right' href=" + trackList[i].track.track_share_url +
+                                                ">Lyrics</a>" +
+                                                "<a class='right' href=" + linkReturn +
+                                                ">Spotify</a>" +
+                                                '</div>');
+                                            $("#song-return").append(songReturn);
+                                            songReturn.addClass('titleBox');
+                                        }
+                                    }
+                            })
+                    })
     </script>
-  </body>
+</body>
+
 </html>
