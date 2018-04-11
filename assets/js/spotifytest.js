@@ -3,7 +3,7 @@ $("#searchSongBtn").on("click", function (event) {
     let searchSong = $("#searchSong").val().trim();
     let searchArtist = $("#searchArtist").val().trim();
     let searchAlbum = $("#searchAlbum").val().trim();
-    let songLink = new SpotifySearch(searchSong, searchArtist, searchAlbum);
+    let songLink = spotifySearch(searchSong, searchArtist, searchAlbum);
 
 
     //returnValues = { link: linkReturn }
