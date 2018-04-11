@@ -2,7 +2,7 @@
     // var variableName = spotifySearch(songTitle, songArtist, songAlbum)
     // caller process return data
     //  let  { songLink : link } = variableName
-
+console.log("spotify.js");
 function spotifySearch(songTitle, artist, album) {
 
     let queryURL = "https://api.spotify.com/v1/search?q=" + title + "&type=track&limit=30&offset=0";
