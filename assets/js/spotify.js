@@ -65,11 +65,4 @@ function spotifySearch(songTitle, artist, album) {
             return returnValues;
 
         });
-
-
-
-    // format return data
-    // let aa = "https://aaaaa.com";
-    // let bb = "bbbbbbbb";
-    // let obj = { link: aa, other : bb} ; // {link: "aaaaa", other: "bbbbbb"}
 };

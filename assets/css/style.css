@@ -1,0 +1,31 @@
+.col-s12-m6{
+    float: none;
+    margin: 100px auto;
+    width: 300px;
+    height: 300px;
+}
+
+#search-button{
+    margin-top: 30px;
+    background-color: #3d6ebf;
+
+}
+#searchContainer {
+    width: 700px;
+    margin: auto;
+}
+.logo-wrapper {
+    align-items: center;
+    display: flex;
+    justify-content: center; 
+}
+.titleBox {
+    margin: 3px;
+    border: 1px solid black;
+    padding: 5px;
+    width: 700px;
+    margin: auto;
+}
+.right {
+    float: right;
+}
