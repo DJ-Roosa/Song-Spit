@@ -19,14 +19,11 @@ $("#searchSongBtn").on("click", function (event) {
     // };
 
 // Create a function that accepts another function as an argument
-const callbackAcceptingFunction = (fn) => {
-    let searchSong = $("#searchSong").val().trim();
-    let searchArtist = $("#searchArtist").val().trim();
-    let searchAlbum = $("#searchAlbum").val().trim();
-    let songLink = spotifySearch(searchSong, searchArtist, searchAlbum);
 
-    return fn(songLink)
-  }
+let searchSong = $("#searchSong").val().trim();
+let searchArtist = $("#searchArtist").val().trim();
+let searchAlbum = $("#searchAlbum").val().trim();
+const callbackAcceptingFunction = spotifySearch(searchSong, searchArtist, searchAlbum);
   
   // Callback gets arguments from the above call
   const callback = (link) => {
