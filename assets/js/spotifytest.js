@@ -1,10 +1,17 @@
 $("#searchSongBtn").on("click", function (event) {
     event.preventDefault();
-    let searchTerm = $("#searchSong").val().trim();
-    let songInfo = spotifySearch(searchTerm);
+    let searchSong = $("#searchSong").val().trim();
+    let searchArtist = $("#searchArtist").val().trim();
+    let searchAlbum = $("#ssearchAlbum").val().trim();
+    let songLink = spotifySearch(searchTerm);
 
-console.log("songInfo");
-console.log(songInfo);
+$("link").val = "<a href src=" + songLink + "/>";
+console.log("Link: " + songLink);
+
+
+//https://accounts.spotify.com/authorize?client_id=e3f88cfb7e5c4c218a192eccbbad9249&response_type=token&redirect_uri=https://dj-roosa.github.io/Song-Spit/spotifytest.html&scope=user-read-private
+
+
 
     // let accessToken = "BQCwQGrrCAjkWnMAcgE984izB9qhSGTBxuTVjcqecj7ewcytvPEcZh_rZZeuhqSr5s4SItoKP7vT73zky74_EJlq4nUJs4VuxX3_dSJrbLdoVXgWu59rzo9IYDST_xfJjFsF7Ck6436hrZCm1LTbrB7YLDq5c5s";
 
