@@ -35,7 +35,7 @@ function spotifySearch(songTitle, artist, album) {
 
             // find match song title
             let linkReturn = "";
-            while (linkReturn === "") {
+            mainLoop:
                 for (let i = 0; i < response.tracks.items.length; i++) {
                     // chech for match on song title and album name
                     console.log("name: " + response.tracks.items[i].name);
@@ -48,16 +48,19 @@ function spotifySearch(songTitle, artist, album) {
                             if (response.tracks.items[i].album.artists[j].name = artist) {
                                 console.log("link found: " + response.tracks.items[i].album.external_urls.spotify);
                                 linkReturn = response.tracks.items[i].album.external_urls.spotify;
+                                break mainLoop;
                             };
                         };
                     };
                 };
+
+            if (linkReturn === "") {
                 linkReturn = "#";
             };
 
             console.log("Link Returned: " + linkReturn);
             let returnValues = {
-                link : linkReturn
+                link: linkReturn
             };
             return returnValues;
 
