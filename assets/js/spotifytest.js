@@ -25,6 +25,7 @@ $("#searchSongBtn").on("click", function (event) {
     let searchAlbum = $("#searchAlbum").val().trim();
     const callbackAcceptingFunction = (fn) => {
         spotifySearch(searchSong, searchArtist, searchAlbum);
+        return fn(link);
     };
 
     // Callback gets arguments from the above call
