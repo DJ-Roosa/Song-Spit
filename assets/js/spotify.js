@@ -3,7 +3,7 @@
     // caller process return data
     //  let  { songLink : link } = variableName
 
-function spotifySearch(songTitle, album, artist) {
+function spotifySearch(songTitle, artist, album) {
 
     let queryURL = "https://api.spotify.com/v1/search?q=" + title + "&type=track&limit=30&offset=0";
 
@@ -33,10 +33,11 @@ function spotifySearch(songTitle, album, artist) {
             console.log(response);
             console.log("success API");
            
+
             // find match song title
             for (let i = 0; i < response.tracks.items.length; i++) {
                 // chech for match on song title and album name
-                if (response.tracks.items[i].name === songTitle && album === response.tracks.items[i].album.name) {
+                if (response.tracks.items[i].name === songTitle && response.tracks.items[i].album.name === album ) {
                     //when match song and album, look for match on artist
                     for (let j = 0; j < response.tracks.items[i].album.artists.length; j++) {
                         // when artist matches, return spotify link
