@@ -1,8 +1,9 @@
 // caller
-    // var variableName = spotifySearch(songTitle, songArtist, songAlbum)
-    // caller process return data
-    //  let  { songLink : link } = variableName
+// var variableName = spotifySearch(songTitle, songArtist, songAlbum)
+// caller process return data
+//  let  { songLink : link } = variableName
 console.log("spotify.js");
+
 function spotifySearch(songTitle, artist, album) {
 
     let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle + "&type=track&limit=30&offset=0";
@@ -32,12 +33,12 @@ function spotifySearch(songTitle, artist, album) {
         .then(function (response) {
             console.log(response);
             console.log("success API");
-           
+
 
             // find match song title
             for (let i = 0; i < response.tracks.items.length; i++) {
                 // chech for match on song title and album name
-                if (response.tracks.items[i].name === songTitle && response.tracks.items[i].album.name === album ) {
+                if (response.tracks.items[i].name === songTitle && response.tracks.items[i].album.name === album) {
                     //when match song and album, look for match on artist
                     for (let j = 0; j < response.tracks.items[i].album.artists.length; j++) {
                         // when artist matches, return spotify link
@@ -47,14 +48,17 @@ function spotifySearch(songTitle, artist, album) {
                     };
                 };
             };
+
+            console.log("Link Returned: " + linkReturn);
+            let returnValues = {
+                songLink: linkReturn
+            };
+            return returnValues;
+
         });
 
 
-    console.log("Link Returned: " + linkReturn);
-    let returnValues = {
-        songLink: linkReturn
-    };
-    return returnValues;
+
     // format return data
     // let aa = "https://aaaaa.com";
     // let bb = "bbbbbbbb";
