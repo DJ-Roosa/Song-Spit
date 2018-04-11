@@ -65,6 +65,6 @@ $("#searchSongBtn").on("click", function (event) {
                     };
                 };
             $("#link").empty;
-            $("#link").replace("<a href=" + linkReturn + " target='_blank'>" + linkReturn + "</a>")
+            $("#link").append("<a href=" + linkReturn + " target='_blank'>" + linkReturn + "</a>")
         });
 });
