@@ -86,9 +86,12 @@
 
                         // console.log(artist.message.body.track_list[0].track.artist_name)
                         var trackList = artist.message.body.track_list;
+                        console.log("tracklist" + trackList)
                         var test = "yellow";
 
                         for (i = 0; i < trackList.length; i++) {
+
+                            console.log("tracklist i" + trackList[i])
                             console.log(trackList[i].track.first_release_date);
                             //var artistname = $("artist"); 
 
@@ -97,6 +100,8 @@
                             let songTitle = trackList[i].track.track_name;
                             let artist = trackList[i].track.artist_name;
                             let album = trackList[i].track.album_name;
+
+
 
                             let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle +
                                 "&type=track&limit=30&offset=0";
@@ -144,6 +149,7 @@
                                         };
 
                                     //*************************************************************************************
+                                    console.log("tracklist i 2" + trackList[i])
                                     console.log("test: " + test);
                                     var songReturn = $('<div>' +
                                         "<strong>Title: </strong>" + trackList[i].track.track_name +
