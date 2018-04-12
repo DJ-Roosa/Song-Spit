@@ -128,20 +128,14 @@
                                             // chech for match on song title and album name
                                             console.log("name: " + response.tracks.items[x].name);
                                             console.log("album: " + response.tracks.items[x].album.name);
-                                            if (response.tracks.items[x].name === songTitle &&
-                                                response.tracks.items[x].album.name === album) {
+                                            if (response.tracks.items[x].name === songTitle && response.tracks.items[x].album.name === album) {
                                                 //when match song and album, look for match on artist
-                                                for (let y = 0; y < response.tracks.items[x].album.artists
-                                                    .length; y++) {
+                                                for (let y = 0; y < response.tracks.items[x].album.artists.length; y++) {
                                                     // when artist matches, return spotify link
-                                                    console.log("artist: " + response.tracks.items[
-                                                        i].album.artists[y].name);
-                                                    if (response.tracks.items[x].album.artists[y].name =
-                                                        artist) {
-                                                        console.log("link found: " + response.tracks
-                                                            .items[X].external_urls.spotify);
-                                                        linkReturn = response.tracks.items[x].external_urls
-                                                            .spotify;
+                                                    console.log("artist: " + response.tracks.items[x].album.artists[y].name);
+                                                    if (response.tracks.items[x].album.artists[y].name = artist) {
+                                                        console.log("link found: " + response.tracks.items[X].external_urls.spotify);
+                                                        linkReturn = response.tracks.items[x].external_urls.spotify;
                                                         break mainLoop;
                                                     };
                                                 };
