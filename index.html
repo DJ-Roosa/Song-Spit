@@ -134,7 +134,7 @@
                                                     // when artist matches, return spotify link
                                                     console.log("artist: " + response.tracks.items[x].album.artists[y].name);
                                                     if (response.tracks.items[x].album.artists[y].name = artist) {
-                                                        console.log("link found: " + response.tracks.items[X].external_urls.spotify);
+                                                        console.log("link found: " + response.tracks.items[x].external_urls.spotify);
                                                         linkReturn = response.tracks.items[x].external_urls.spotify;
                                                         break mainLoop;
                                                     };
