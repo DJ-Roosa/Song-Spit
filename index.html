@@ -163,10 +163,10 @@
                                         "<strong>Album: </strong>" + trackList[i].track.album_name +
                                         '<br>' +
                                         "<strong>Year: </strong>" + trackList[i].track.first_release_date +
-                                        "<a class='right' href=" + trackList[i].track.track_share_url +
-                                        ">Lyrics</a>" +
-                                        "<a target='_blank' class='right' href=" + linkReturn +
-                                        ">           Spotify</a>" +
+                                        "<span><a class='right' href=" + trackList[i].track.track_share_url +
+                                        ">Lyrics</a></span>" +
+                                        "<span><a target='_blank' class='right' href=" + linkReturn +
+                                        ">Spotify</a></span>" +
                                         '</div>');
                                     $("#song-return").append(songReturn);
                                     songReturn.addClass('titleBox');
