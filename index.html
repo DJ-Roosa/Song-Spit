@@ -86,6 +86,7 @@
 
                         // console.log(artist.message.body.track_list[0].track.artist_name)
                         var trackList = artist.message.body.track_list;
+                        var test = "yellow";
 
                         for (i = 0; i < trackList.length; i++) {
                             console.log(trackList[i].track.first_release_date);
@@ -143,6 +144,7 @@
                                         };
 
                                     //*************************************************************************************
+                                    console.log("test: " + test);
                                     var songReturn = $('<div>' +
                                         "<strong>Title: </strong>" + trackList[i].track.track_name +
                                         '<br>' +
