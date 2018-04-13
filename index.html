@@ -136,7 +136,7 @@
 
 
                                 // find match song title
-
+                                let linkReturn = "https://open.spotify.com";
                                 mainLoop:
                                     for (let x = 0; x < response.tracks.items.length; x++) {
                                         // chech for match on song title and album name
@@ -163,12 +163,10 @@
                                     };
 
                                 //*************************************************************************************
-                                console.log("tracklist i 2" + trackList);
-                                console.log("i: " + i);
-                                console.log("test: " + test);
-
+                               
                                 console.log(songTitle);
                                 console.log(artist);
+                                console.log("Spotify Link: " + linkReturn);
                                 var songReturn = $('<div>' +
                                     "<strong>Title: </strong>" + trackList[i].track.track_name +
                                     '<br>' +
