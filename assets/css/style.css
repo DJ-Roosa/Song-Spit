@@ -7,7 +7,9 @@
 
 #search-button{
     margin-top: 30px;
+    margin-bottom: 30px;
     background-color: #3d6ebf;
+
 
 }
 #searchContainer {
@@ -20,12 +22,22 @@
     justify-content: center; 
 }
 .titleBox {
-    margin: 3px;
-    border: 1px solid black;
-    padding: 5px;
+        /* border-top: 1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black; */
+
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
     width: 700px;
     margin: auto;
+    
+
 }
 .right {
     float: right;
 }
+
+footer.page-footer {
+    background-color: #3d6ebf; 
+    margin-top: 40px;
+  }

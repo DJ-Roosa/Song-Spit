@@ -20,7 +20,6 @@
     body {
         padding: 20px 10px;
     }
-
     p {
         display: block;
     }
@@ -108,7 +107,7 @@
                         let songTitle = trackList[i].track.track_name;
                         let artist = trackList[i].track.artist_name;
                         let album = trackList[i].track.album_name;
-
+                        
 
 
                         let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle +
@@ -195,6 +194,21 @@
             });
         });
     </script>
+        <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <p class="grey-text text-lighten-4">Powered by MusixMatch and Spotify. © 2018 Copyright</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="start.html">Spotify Login</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright"></div>
+        </footer>
 </body>
 
 </html>
