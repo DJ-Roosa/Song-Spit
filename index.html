@@ -80,7 +80,7 @@
                 data: {
                     apikey: "ab6018d2a0d1bbeef89eaa602857cdd8",
                     q_lyrics: lyrics,
-                    page_size: 10,
+                    page_size: 30,
                     format: "jsonp",
                     callback: "jsonp_callback"
                 },
@@ -114,7 +114,7 @@
                         let queryURL = "https://api.spotify.com/v1/search?q=" + songTitle +
                             "&type=track&limit=30&offset=0";
 
-                       
+
                         // get the parameters values. Spotify uses anchor tag # in the response from the authorize redirect.
                         let params = document.location.hash;
                         // drop the leading #
@@ -137,7 +137,7 @@
 
 
                                 // find match song title
-                                let linkReturn = "https://open.spotify.com";
+                                let linkReturn = "";
                                 mainLoop:
                                     for (let x = 0; x < response.tracks.items.length; x++) {
                                         // chech for match on song title and album name
@@ -164,27 +164,31 @@
                                     };
 
                                 //*************************************************************************************
+                                if (linkReturn != "") {
 
-                                console.log(songTitle);
-                                console.log(artist);
-                                console.log("Spotify Link: " + linkReturn);
-                                var songReturn = $('<div>' +
-                                    "<strong>Title: </strong>" + trackList[i].track.track_name +
-                                    '<br>' +
-                                    "<strong>Artist: </strong>" + trackList[i].track.artist_name +
-                                    '<br>' +
-                                    "<strong>Album: </strong>" + trackList[i].track.album_name +
-                                    '<br>' +
-                                    "<strong>Year: </strong>" + trackList[i].track.first_release_date +
-                                    "<span><a target='_blank' class='right' href=" +
-                                    trackList[i].track.track_share_url +
-                                    ">Lyrics</a></span>" +
-                                    "<span><a target='_blank' class='right' href=" +
-                                    linkReturn +
-                                    ">Spotify&nbsp;&nbsp;</a></span>" +
-                                    '</div>');
-                                $("#song-return").append(songReturn);
-                                songReturn.addClass('titleBox');
+                                    console.log(songTitle);
+                                    console.log(artist);
+                                    console.log("Spotify Link: " + linkReturn);
+                                    var songReturn = $('<div>' +
+                                        "<strong>Title: </strong>" + trackList[i].track.track_name +
+                                        '<br>' +
+                                        "<strong>Artist: </strong>" + trackList[i].track.artist_name +
+                                        '<br>' +
+                                        "<strong>Album: </strong>" + trackList[i].track.album_name +
+                                        '<br>' +
+                                        "<strong>Year: </strong>" + trackList[i].track.first_release_date +
+                                        "<span><a target='_blank' class='right' href=" +
+                                        trackList[i].track.track_share_url +
+                                        ">Lyrics</a></span>" +
+                                        "<span><a target='_blank' class='right' href=" +
+                                        linkReturn +
+                                        ">Spotify&nbsp;&nbsp;</a></span>" +
+                                        '</div>');
+                                    $("#song-return").append(songReturn);
+                                    songReturn.addClass('titleBox');
+
+                                };
+
                             });
                     };
                 }
