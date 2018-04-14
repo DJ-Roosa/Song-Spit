@@ -41,3 +41,25 @@ footer.page-footer {
     background-color: #3d6ebf; 
     margin-top: 40px;
   }
+
+th {
+    font-weight: bold;
+}
+
+#songTable {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.spotifyImg {
+    width: 70px;
+    height: 70px;
+    border: none;
+}
+
+.musixmatchImg {
+    width: 50px;
+    height: 50px;
+    border: none;
+}
